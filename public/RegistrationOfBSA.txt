@@ -1,0 +1,43 @@
+IF OBJECT_ID ('dbo.RegistrationOfBSA') IS NOT NULL
+	DROP TABLE dbo.RegistrationOfBSA
+GO
+
+CREATE TABLE dbo.RegistrationOfBSA
+	(
+	ClientCode VARCHAR (100) NOT NULL,
+	StaticIP   VARCHAR (50) NULL,
+	PortNo     INT NULL,
+	CONSTRAINT PK__Registra__96ADCE1A1851C2BE PRIMARY KEY (ClientCode)
+	)
+GO
+
+
+INSERT INTO dbo.RegistrationOfBSA (ClientCode, StaticIP, PortNo)
+VALUES ('DDP002', '103.177.224.33', 5000)
+GO
+
+
+IF OBJECT_ID ('dbo.RegistrationOfBSADet') IS NOT NULL
+	DROP TABLE dbo.RegistrationOfBSADet
+GO
+
+CREATE TABLE dbo.RegistrationOfBSADet
+	(
+	SNo        INT NOT NULL,
+	ClientCode VARCHAR (100) NOT NULL,
+	UserName   VARCHAR (10) NULL,
+	MobileNo   VARCHAR (30) NULL,
+	CONSTRAINT PK__Registra__96ADCE1AE8A5DC3F PRIMARY KEY (ClientCode,SNo),
+	FOREIGN KEY (ClientCode) REFERENCES dbo.RegistrationOfBSA (ClientCode)
+	)
+GO
+
+INSERT INTO dbo.RegistrationOfBSADet (SNo, ClientCode, UserName, MobileNo)
+VALUES (1, 'DDP002', 'Sanjays', '011-47114800')
+GO
+INSERT INTO dbo.RegistrationOfBSADet (SNo, ClientCode, UserName, MobileNo)
+VALUES (2, 'DDP002', 'Mehul', '011-47114800')
+GO
+INSERT INTO dbo.RegistrationOfBSADet (SNo, ClientCode, UserName, MobileNo)
+VALUES (3, 'DDP002', 'Lab', '011-47114800')
+GO
